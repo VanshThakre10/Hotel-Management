@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Stay | Luxury Hotel Booking</title>
+    <meta name="description" content="Book your premium stay at Grand Stay Hotel. Experience comfort and luxury.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="py-4 shadow-sm bg-white sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h3 mb-0 brand-logo">GRAND <span class="text-primary">STAY</span></h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Rooms</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-5 bg-light min-vh-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Booking Card -->
+                    <div class="card border-0 shadow-lg booking-card overflow-hidden">
+                        <div class="row g-0">
+                            <!-- Image Section (Visible on MD+) -->
+                            <div class="col-md-4 d-none d-md-block card-img-side">
+                            </div>
+                            <!-- Form Section -->
+                            <div class="col-md-8 p-4 p-lg-5">
+                                <div class="mb-4">
+                                    <h2 class="display-6 fw-bold text-dark">Reserve Your Stay</h2>
+                                    <p class="text-muted">Enter your details to find the best available rooms.</p>
+                                </div>
+
+                                <form id="bookingForm" novalidate>
+                                    <div class="row g-3">
+                                        <!-- Dates -->
+                                        <div class="col-sm-6">
+                                            <label for="checkIn" class="form-label fw-semibold">Check-in Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0"><i
+                                                        class="bi bi-calendar-event"></i></span>
+                                                <input type="date" class="form-control border-start-0" id="checkIn"
+                                                    required>
+                                            </div>
+                                            <div class="invalid-feedback">Please select a valid check-in date.</div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="checkOut" class="form-label fw-semibold">Check-out Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0"><i
+                                                        class="bi bi-calendar-check"></i></span>
+                                                <input type="date" class="form-control border-start-0" id="checkOut"
+                                                    required disabled>
+                                            </div>
+                                            <div class="invalid-feedback">Check-out must be after check-in.</div>
+                                        </div>
+
+                                        <!-- Room & Guests -->
+                                        <div class="col-md-6">
+                                            <label for="roomType" class="form-label fw-semibold">
+                                                Room Type
+                                                <i class="bi bi-question-circle text-muted ms-1"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Different rooms have different guest capacities."></i>
+                                            </label>
+                                            <select class="form-select" id="roomType" required>
+                                                <option value="" selected disabled>Choose room...</option>
+                                                <option value="single">Single (Max 1 Guest)</option>
+                                                <option value="double">Double (Max 2 Guests)</option>
+                                                <option value="suite">Suite (Max 4 Guests)</option>
+                                                <option value="deluxe">Deluxe (Max 6 Guests)</option>
+                                            </select>
+                                            <div class="invalid-feedback">Please select a room type.</div>
+                                        </div>
+
+                                        <div class="col-sm-3 col-6">
+                                            <label for="adults" class="form-label fw-semibold">Adults</label>
+                                            <input type="number" class="form-control" id="adults" min="1" value="1"
+                                                required>
+                                        </div>
+                                        <div class="col-sm-3 col-6">
+                                            <label for="children" class="form-label fw-semibold">Children</label>
+                                            <input type="number" class="form-control" id="children" min="0" value="0">
+                                        </div>
+
+                                        <!-- Special Requests -->
+                                        <div class="col-12">
+                                            <label for="specialRequests" class="form-label fw-semibold">
+                                                Special Requests (Optional)
+                                                <i class="bi bi-question-circle text-muted ms-1"
+                                                    data-bs-toggle="tooltip"
+                                                    title="Let us know if you need a crib, high floor, or have allergies."></i>
+                                            </label>
+                                            <textarea class="form-control" id="specialRequests" rows="3"
+                                                placeholder="Any dietary needs or floor preference?"></textarea>
+                                        </div>
+
+                                        <!-- Guest Limit Info -->
+                                        <div class="col-12">
+                                            <div id="guestLimitInfo" class="alert alert-info py-2 d-none">
+                                                <i class="bi bi-info-circle me-2"></i>
+                                                <small>Maximum guests allowed for <span id="selectedRoomName">this
+                                                        room</span>: <span id="maxGuestCount">0</span></small>
+                                            </div>
+                                        </div>
+
+                                        <!-- Submit -->
+                                        <div class="col-12 mt-4">
+                                            <button type="submit"
+                                                class="btn btn-primary btn-lg w-100 py-3 fw-bold shadow-sm"
+                                                id="submitBtn">
+                                                Book Now <i class="bi bi-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Overlay -->
+    <div id="successOverlay">
+        <div class="success-content">
+            <div class="mb-4">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+            </div>
+            <h2 class="display-5 fw-bold text-dark">Booking Confirmed!</h2>
+            <p class="lead text-muted">We've received your request. A confirmation email is on its way.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Grand Stay Luxury Hotels. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
