@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --accent-color: #daa520; /* Golden accent */
+    --bg-light: #f8f9fa;
+    --card-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: #333;
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .brand-logo {
+    font-family: 'Playfair Display', serif;
+}
+
+.brand-logo {
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* Booking Card Styling */
+.booking-card {
+    border-radius: 20px;
+    background: #fff;
+    transition: var(--transition-smooth);
+}
+
+.card-img-side {
+    background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    position: relative;
+}
+
+.card-img-side::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+}
+
+/* Form Controls */
+.form-label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    transition: var(--transition-smooth);
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+    border-color: var(--primary-color);
+}
+
+.input-group-text {
+    border-radius: 10px 0 0 10px;
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Tooltips & Helpers */
+.tooltip-inner {
+    background-color: #333;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+/* Validation Styles */
+.form-control.is-invalid, .form-select.is-invalid {
+    background-image: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .booking-card {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .card-img-side {
+        display: none;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.booking-card {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Success Message Overlay */
+#successOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+}
+
+#successOverlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#successOverlay.show .success-content {
+    transform: scale(1);
+}
